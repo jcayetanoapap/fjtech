@@ -1,11 +1,525 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>JF-TECH</title>
+  <meta name="description" content="Info RD - Tu fuente confiable de información dominicana" />
+  <style>
+    /* Variables y estilos base */
+    :root {
+      --primary: #1664C1;
+      --secondary: #C62828;
+      --accent: #000000;
+      --background: #ffffff;
+      --text: #000000;
+      --gray: #666666;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      line-height: 1.6;
+      color: var(--text);
+      background-color: var(--background);
+    }
+
+    /* Vision Mission Values Section */
+    .vmv {
+      background: linear-gradient(to bottom, #f8f7ff, white);
+      padding: 5rem 2rem;
+    }
+
+    .vmv-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      max-width: 1280px;
+      margin: 0 auto;
+    }
+
+    .vmv-card {
+      background: white;
+      padding: 2rem;
+      border-radius: 1rem;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .vmv-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    .vmv-card h2 {
+      color: var(--primary);
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+
+    .vmv-card p {
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    .values-list {
+      list-style: none;
+      padding: 0;
+    }
+
+    .values-list li {
+      color: var(--text);
+      padding: 0.5rem 0;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    }
+
+    .values-list li:last-child {
+      border-bottom: none;
+    }
+
+    /* Download Section */
+    .download {
+      background: linear-gradient(to bottom, white, #f8f7ff);
+      text-align: center;
+      padding: 5rem 2rem;
+    }
+
+    .download-subtitle {
+      font-size: 1.25rem;
+      color: var(--text);
+      max-width: 600px;
+      margin: 0 auto 2rem;
+    }
+
+    .download-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      background: var(--primary);
+      color: white;
+      padding: 1rem 2rem;
+      border-radius: 0.5rem;
+      text-decoration: none;
+      transition: background-color 0.3s;
+    }
+
+    .download-button:hover {
+      background: var(--secondary);
+    }
+
+    /* Estilos generales de sección */
+    section {
+      padding: 5rem 2rem;
+      max-width: 1280px;
+      margin: 0 auto;
+    }
+
+    h2 {
+      font-size: 2.5rem;
+      text-align: center;
+      margin-bottom: 2rem;
+      color: var(--primary);
+    }
+
+    /* Hero Section */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+
+    .hero h1 {
+      font-size: 3rem;
+      margin: 2rem 0 1rem;
+      max-width: 800px;
+      color: var(--accent);
+    }
+
+    .hero p {
+      font-size: 1.25rem;
+      color: var(--text);
+      max-width: 600px;
+    }
+
+    .gradient-text {
+      background: linear-gradient(to right, var(--primary), var(--secondary));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    /* Logo */
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .logo-icon {
+      width: 2.5rem;
+      height: 2.5rem;
+      background: linear-gradient(to bottom right, var(--primary), var(--secondary));
+      border-radius: 0.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: bold;
+    }
+
+    .logo-text {
+      font-size: 1.5rem;
+      font-weight: bold;
+      background: linear-gradient(to right, var(--primary), var(--secondary));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    /* About Section */
+    .about {
+      background: linear-gradient(to bottom, white, #f8f7ff);
+    }
+
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      padding: 1rem;
+    }
+
+    .team-member {
+      background: white;
+      padding: 1.5rem;
+      border-radius: 1rem;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .team-member:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    .member-image {
+      width: 8rem;
+      height: 8rem;
+      border-radius: 50%;
+      margin: 0 auto 1rem;
+      display: block;
+    }
+
+    .team-member h3 {
+      color: var(--primary);
+    }
+
+    .team-member p {
+      color: var(--text);
+    }
+
+    /* Features Section */
+    .features {
+      text-align: center;
+    }
+
+    .features-subtitle {
+      font-size: 1.25rem;
+      color: var(--text);
+      max-width: 600px;
+      margin: 0 auto 3rem;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      padding: 1rem;
+    }
+
+    .feature-card {
+      background: white;
+      padding: 1.5rem;
+      border-radius: 1rem;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    .feature-card h3 {
+      color: var(--secondary);
+    }
+
+    .feature-card p {
+      color: var(--text);
+    }
+
+    .feature-icon {
+      width: 3rem;
+      height: 3rem;
+      background-color: rgba(22, 100, 193, 0.1);
+      border-radius: 0.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1rem;
+      color: var(--primary);
+    }
+
+    /* Contact Section */
+    .contact {
+      background: linear-gradient(to bottom, #f8f7ff, white);
+      text-align: center;
+    }
+
+    .contact-links {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+    }
+
+    .contact-link {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--text);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    .contact-link:hover {
+      color: var(--primary);
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      h2 {
+        font-size: 2rem;
+      }
+
+      .hero h1 {
+        font-size: 2.5rem;
+      }
+
+      .hero p {
+        font-size: 1.1rem;
+      }
+
+      section {
+        padding: 3rem 1rem;
+      }
+    }
+
+    /* Animaciones */
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .hero,
+    .team-member,
+    .feature-card {
+      animation: fadeIn 0.5s ease-out forwards;
+    }
+  </style>
 </head>
+
 <body>
-    
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="logo">
+      <div class="logo-icon">
+        <span>JF</span>
+      </div>
+      <span class="logo-text">TECH</span>
+    </div>
+    <h1>Innovando para la <span class="gradient-text">República Dominicana</span></h1>
+    <p>Desarrollando soluciones tecnológicas que conectan y empoderan a nuestra comunidad</p>
+  </section>
+
+  <!-- Vision Mission Values Section -->
+  <section class="vmv">
+    <div class="vmv-grid">
+      <div class="vmv-card">
+        <h2>Visión</h2>
+        <p>Ser la empresa líder en soluciones tecnológicas en la República Dominicana, transformando la manera en que
+          los dominicanos acceden y utilizan la información, contribuyendo al desarrollo digital de nuestra sociedad.
+        </p>
+      </div>
+      <div class="vmv-card">
+        <h2>Misión</h2>
+        <p>Desarrollar y proporcionar soluciones tecnológicas innovadoras que simplifiquen la vida cotidiana de los
+          dominicanos, garantizando acceso fácil y confiable a información relevante para nuestra comunidad.</p>
+      </div>
+      <div class="vmv-card">
+        <h2>Valores</h2>
+        <ul class="values-list">
+          <li>Innovación constante</li>
+          <li>Compromiso con la excelencia</li>
+          <li>Integridad y transparencia</li>
+          <li>Responsabilidad social</li>
+          <li>Trabajo en equipo</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section class="about">
+    <h2>Nuestro Equipo</h2>
+    <div class="team-grid">
+      <div class="team-member">
+        <img src="./img/frederick.jpeg" alt="Frederick Garcia Rodriguez" class="member-image">
+        <h3>Frederick Garcia Rodriguez</h3>
+        <p>Co-fundador & Desarrollador</p>
+      </div>
+      
+      <div class="team-member">
+        <img src="./img/PROFILE TEAM.jpeg" alt="Josue Alexander Cayetano" class="member-image">
+        <h3>Josue Alexander Cayetano</h3>
+        <p>Co-fundador & Desarrollador</p>
+      </div>
+      
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section class="features">
+    <h2>Info RD</h2>
+    <p class="features-subtitle">Tu fuente confiable para toda la información que necesitas de la República Dominicana
+    </p>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="2" width="20" height="20" rx="2" ry="2" />
+            <path d="M7 12h10" />
+            <path d="M12 7v10" />
+          </svg>
+        </div>
+        <h3>Resultados de Loterías</h3>
+        <p>Mantente actualizado con los últimos resultados de todas las loterías</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 22h12" />
+            <path d="M8 4v18" />
+            <path d="M12 4v18" />
+            <path d="M3 10h12" />
+            <path d="M3 4h12" />
+            <path d="m17 12 5-3-5-3v6Z" />
+          </svg>
+        </div>
+        <h3>Precios de Combustibles</h3>
+        <p>Consulta los precios actualizados de los combustibles</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="12" y1="1" x2="12" y2="23" />
+            <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
+          </svg>
+        </div>
+        <h3>Tasa de Cambio</h3>
+        <p>Valores actualizados de las principales divisas</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+            <line x1="16" y1="2" x2="16" y2="6" />
+            <line x1="8" y1="2" x2="8" y2="6" />
+            <line x1="3" y1="10" x2="21" y2="10" />
+          </svg>
+        </div>
+        <h3>Calendario de Festivos</h3>
+        <p>Calendario completo de días festivos dominicanos</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Download Section -->
+  <section class="download">
+    <h2>Descarga Info RD</h2>
+    <p class="download-subtitle">Lleva toda la información de la República Dominicana en tu bolsillo</p>
+    <a href="https://play.google.com/store/apps/details?id=com.infordapp" target="_blank" rel="noopener noreferrer"
+      class="download-button">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="m3 20.59 6.3-3.51" />
+        <path d="m3 3.41 6.3 3.51" />
+        <path d="m11.5 12 2.5 4h5l-2.5-4 2.5-4h-5Z" />
+        <path d="M3 20.59v-8.34l6.3-3.51" />
+        <path d="M3 3.41v8.34l6.3 3.51" />
+      </svg>
+      <span>Disponible en Google Play</span>
+    </a>
+  </section>
+
+  <!-- Contact Section -->
+  <section class="contact">
+    <h2>Contáctanos</h2>
+    <div class="contact-links">
+      <a href="mailto:contact@jf-tech.com" class="contact-link">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="2" y="4" width="20" height="16" rx="2" />
+          <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+        </svg>
+        <span>Email</span>
+      </a>
+      <a href="https://github.com/jf-tech" target="_blank" rel="noopener noreferrer" class="contact-link">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path
+            d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4" />
+          <path d="M9 18c-4.51 2-5-2-7-2" />
+        </svg>
+        <span>GitHub</span>
+      </a>
+    </div>
+  </section>
+
+  <script>
+    // Animaciones al hacer scroll
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('animate');
+        }
+      });
+    });
+
+    document.querySelectorAll('.vmv-card, .team-member, .feature-card').forEach((el) => observer.observe(el));
+  </script>
 </body>
+
 </html>
